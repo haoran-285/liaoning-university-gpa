@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang='zh-CN'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <title>辽宁大学GPA计算器</title>
+  <link rel='stylesheet' href='/style.css'>
+  <script src='/app.js' defer></script>
+</head>
+<body>
+<main>
+  <header class='cover'>
+    <div class='intro'><h1>辽宁大学<br><em>GPA</em>计算器</h1>
+      <p>导入课程，校对成绩，<br>再核算绩点、加权平均分和学分。</p></div>
+    <figure><img src='/folio.webp' width='1536' height='1024' alt='阳光落在笔记本、银杏叶和钢笔上'></figure>
+  </header>
+  <section aria-labelledby='source-title'>
+    <div class='section-head'><span>01</span><h2 id='source-title'>导入课程</h2></div>
+    <div id='portal-options'>
+      <p><small>导入须知</small><strong>「全部及格成绩」可能省略不及格课程，也可能未标注补考或重修。</strong>导入后默认选为「正常」，可在课程表中修改为「补考」或「重修」。<br>GPA计算时，同一课程多次考核均计入计算，如存在涉及补考或重修课程，请手动核对修读方式并补录缺少的记录。</p>
+        <div id='portal-paste'>
+        <label for='portal-text'>复制完整页面（含各学期的表头和课程行）</label>
+        <textarea id='portal-text' rows='6' placeholder='在此粘贴教务系统「全部及格成绩」页面的内容'></textarea>
+        <button type='button' id='import-text'>导入到课程表</button>
+        <p id='portal-status' role='status'></p>
+        <details id='portal-raw-box' hidden><summary>查看未导入的文本行</summary><pre id='portal-raw'></pre></details>
+      </div>
+    </div>
+  </section>
+  <section aria-labelledby='review-title'>
+    <div class='section-head'><span>02</span><h2 id='review-title'>校对课程</h2></div>
+    <p class='muted'>请对照教务系统核对课程名称、学分、成绩、修读方式和有无漏行。</p>
+    <div class='table-wrap'>
+      <table>
+        <thead><tr><th scope='col'>课程名称</th><th scope='col'>学分</th><th scope='col'>成绩</th><th scope='col'>修读方式</th><th scope='col'>绩点</th><th scope='col'>绩点 × 学分</th><th scope='col'>状态</th><th scope='col'>操作</th></tr></thead>
+        <tbody id='rows'></tbody>
+      </table>
+    </div>
+    <p id='empty' class='muted'>暂无课程。请粘贴教务系统的「全部及格成绩」页面，或手动添加课程。</p>
+    <div class='controls actions'><button class='secondary' id='add' type='button'>＋ 手动添加课程</button><button id='calculate' type='button'>计算汇总</button></div>
+    <p id='calc-status' role='status'></p>
+    <p id='portal-calc-note' class='muted' hidden>按课程表中选定的修读方式计算绩点。计算结果仅供参考，具体以教务系统实际显示为准。</p>
+  </section>
+  <section class='result' aria-labelledby='result-title'>
+    <div class='section-head'><span>03</span><h2 id='result-title'>统计结果</h2></div>
+    <dl aria-live='polite'>
+      <div><dt>学分平均绩点 GPA</dt><dd id='gpa'>—</dd></div>
+      <div><dt>学分加权平均分</dt><dd id='average'>—</dd></div>
+      <div><dt>修读总学分</dt><dd id='credits'>—</dd></div>
+    </dl>
+    <p class='muted'>四六级的成绩及学分不计入任何统计。学分加权平均分由未舍入的 GPA 换算为百分制，等级成绩通过 GPA 参与换算。</p>
+  </section>
+</main>
+</body>
+</html>

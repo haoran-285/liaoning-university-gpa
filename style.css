@@ -1,0 +1,270 @@
+:root {
+  color-scheme: light;
+  --paper: #F8FAFC;
+  --ink: #0F172A;
+  --soft: #64748B;
+  --accent: #2563EB;
+  --hover: #1D4ED8;
+  --line: #E2E8F0;
+  --white: #FFFFFF;
+  --error: #9B3021;
+  --shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 18px/1.75 "Songti SC", SimSun, "Noto Serif CJK SC", "Noto Serif SC", serif; }
+main { width: min(800px, calc(100% - 40px)); margin: auto; padding: 80px 0 96px; }
+h1, h2, p, dl, dd { margin: 0; }
+h1 { margin: 16px 0 12px; font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -.035em; }
+h2 { font-size: 28px; font-weight: 600; line-height: 1.3; letter-spacing: -.02em; }
+h1, h2 { font-family: "Kaiti SC", KaiTi, STKaiti, "Songti SC", SimSun, serif; }
+p { color: var(--soft); }
+p + p { margin-top: 8px; }
+.ledger-mark { display: none; }
+.eyebrow, .section-head span { display: inline-block; padding: 3px 10px; border-radius: 999px; background: #EFF6FF; color: var(--accent); font-size: 12px; font-weight: 600; }
+.section-head span { font-variant-numeric: tabular-nums; }
+section { margin-top: 96px; padding: clamp(18px, 4vw, 32px); }
+section, dl > div { border: 1px solid var(--line); border-radius: 12px; background: var(--white); box-shadow: var(--shadow); }
+.section-head, .controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.section-head { margin-bottom: 16px; }
+.controls { margin: 12px 0; }
+.actions { margin-top: 20px; }
+label { font-weight: 600; }
+.controls label { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; max-width: 100%; }
+input, select, textarea, button { font: inherit; color: inherit; }
+select, textarea, td input { border: 1px solid var(--line); border-radius: 8px; background: var(--white); padding: 5px 8px; }
+select { max-width: 100%; }
+textarea { display: block; width: 100%; margin: 6px 0 12px; padding: 10px; }
+button { border: 1px solid var(--accent); border-radius: 8px; background: var(--accent); color: var(--white); padding: 7px 12px; font: inherit; cursor: pointer; transition: background-color .3s, border-color .3s; }
+button:not(:disabled):hover { background: var(--hover); border-color: var(--hover); }
+button:disabled { opacity: .55; cursor: default; }
+button.secondary, button.remove { background: var(--white); color: var(--accent); border-color: var(--line); }
+button.secondary:hover, button.remove:hover { background: #EFF6FF; border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+#portal-options > p { padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+#portal-options strong { color: var(--ink); }
+.table-wrap { overflow-x: auto; margin-top: 14px; border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; min-width: 690px; font-size: 16px; }
+th, td { text-align: left; padding: 7px; vertical-align: middle; }
+tbody tr { border-top: 1px solid var(--line); }
+th { background: var(--paper); color: var(--soft); white-space: nowrap; }
+td:first-child { min-width: 165px; }
+td:nth-child(2), td:nth-child(3) { width: 68px; }
+td:nth-child(7) { min-width: 64px; }
+td input, td select { width: 100%; }
+button.remove { white-space: nowrap; padding: 4px 8px; }
+#empty { padding-top: 12px; }
+.muted { color: var(--soft); }
+.error, .invalid td:nth-child(7) { color: var(--error); }
+.invalid { background: #FFF2EF; }
+details { margin-top: 8px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 240px; overflow: auto; }
+[role='status']:not(:empty) { margin-top: 8px; }
+dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+dl > div { padding: 16px; }
+dt { color: var(--soft); font-size: 14px; }
+dd { font-size: 30px; font-weight: 600; line-height: 1.4; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+@media (max-width: 767px) {
+  main { padding-top: 48px; }
+  h1 { font-size: 32px; }
+  dl { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { animation: fade-in-up .6s ease-out both; }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  dl > div { transition: transform .3s ease; }
+  dl > div:hover { transform: translateY(-4px); }
+}
+
+body {
+  background: #F8FAFC url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201440%201000%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22c%22%3E%3Cstop%20stop-color%3D%22%23C5EDF3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23C5EDF3%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22v%22%3E%3Cstop%20stop-color%3D%22%23DDD5FF%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23DDD5FF%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3Cpattern%20id%3D%22p%22%20width%3D%2226%22%20height%3D%2226%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Ccircle%20cx%3D%222%22%20cy%3D%222%22%20r%3D%221%22%20fill%3D%22%23497891%22%20opacity%3D%22.2%22%2F%3E%3C%2Fpattern%3E%3ClinearGradient%20id%3D%22l%22%3E%3Cstop%20stop-color%3D%22%2368B3C5%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%23A0A9CF%22%20stop-opacity%3D%22.12%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23A292DE%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cellipse%20cx%3D%22100%22%20cy%3D%22240%22%20rx%3D%22620%22%20ry%3D%22520%22%20fill%3D%22url(%23c)%22%2F%3E%3Cellipse%20cx%3D%221370%22%20cy%3D%22150%22%20rx%3D%22620%22%20ry%3D%22480%22%20fill%3D%22url(%23v)%22%2F%3E%3Cpath%20d%3D%22M0%2070h395v460H0zm1085-70h355v430h-355z%22%20fill%3D%22url(%23p)%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22url(%23l)%22%20opacity%3D%22.52%22%3E%3Cpath%20d%3D%22M-100%20490C140%20120%20355%20110%20560%20365S980%20655%201530%2070%22%20id%3D%22r%22%2F%3E%3Cuse%20href%3D%22%23r%22%20y%3D%2220%22%2F%3E%3Cuse%20href%3D%22%23r%22%20y%3D%2240%22%2F%3E%3Cuse%20href%3D%22%23r%22%20y%3D%2260%22%2F%3E%3Cuse%20href%3D%22%23r%22%20y%3D%2280%22%2F%3E%3Cuse%20href%3D%22%23r%22%20y%3D%22100%22%2F%3E%3Cuse%20href%3D%22%23r%22%20y%3D%22120%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23F8FAFC%22%20stroke%3D%22%239DB6D0%22%3E%3Ccircle%20cx%3D%22126%22%20cy%3D%22324%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22252%22%20cy%3D%22293%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%221257%22%20cy%3D%22365%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%221350%22%20cy%3D%22281%22%20r%3D%224%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top / max(100%, 1060px) auto no-repeat;
+}
+section { background: #FFFFFFE8; backdrop-filter: blur(14px); }
+button:not(.secondary, .remove) {
+  color: #FFF; border-color: transparent; font-weight: 700;
+  background: linear-gradient(110deg, #116680, #5340A3);
+}
+button:not(.secondary, .remove, :disabled):hover {
+  background: linear-gradient(110deg, #0C5267, #423187);
+}
+#portal-options > p, #portal-calc-note {
+  color: #75480D; background: #FFF5DF; border: 1px solid #E9CD91; border-radius: 8px; padding: 12px 14px;
+}
+#portal-options strong { color: #653C0B; }
+[role='status']:not(:empty) {
+  border: 1px solid #B5DFE8; border-radius: 8px; padding: 8px 12px; color: #145267; background: #EDF9FB;
+}
+[role='status'].error:not(:empty) { color: var(--error); background: #FFF0EE; border-color: #EBC0B9; }
+dl > div { --metric: #145970; background: #EAF7FB; border-color: #B9E0EB; }
+dl > div:nth-child(2) { --metric: #574298; background: #F2EEFF; border-color: #DAD0F6; }
+dl > div:nth-child(3) { --metric: #185C48; background: #EAF7F0; border-color: #C1E3D1; }
+dt, dd { color: var(--metric); }
+
+html { height: 100%; }
+body {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background-attachment: fixed;
+}
+main {
+  width: min(864px, calc(100% - 40px));
+  max-height: calc(100% - 40px);
+  min-height: 0;
+  margin: 0;
+  padding: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 32px) 56px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #FFFFFFD9;
+  border-radius: 24px;
+  background: #F8FAFC9C;
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
+  backdrop-filter: blur(20px) saturate(135%);
+  box-shadow: 0 12px 40px #223A6420;
+}
+@media (max-width: 767px) {
+  main { width: calc(100% - 20px); max-height: calc(100% - 20px); border-radius: 18px; }
+}
+
+:root{--ink:#173f3e;--soft:#465957;--line:#cbd5ce;--accent:#195651;--paper:#f7f8f1}
+body{background:linear-gradient(116deg,#dbdfd3ed,#e9ede1f2 56%,#c8d7d1e8),url(/folio.webp) center/cover fixed;background-attachment:fixed;font-family:SimSun,'Songti SC','Noto Serif CJK SC',serif;color:var(--ink)}
+main{width:min(1180px,calc(100% - 48px));max-height:calc(100dvh - 32px);padding:20px clamp(22px,4vw,62px) 60px;background:#fbfcf5e8;border-radius:22px;backdrop-filter:blur(20px);scrollbar-width:thin;scrollbar-color:#bac9bc transparent}
+nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #aebbb1;padding-bottom:12px;font-size:17px;letter-spacing:.12em}nav i{color:#9c772e;font-weight:400;margin:0 4px}small,.caption{font:600 12px/1.4 Georgia,SimSun,serif;letter-spacing:.12em;color:#49605b}
+.cover{display:grid;grid-template-columns:42% 58%;align-items:center;padding:28px 0 38px}.intro{padding:0 8px 0 4px}.intro small{border-left:3px solid #b38a27;padding-left:10px}.intro p{font-size:18px;line-height:1.65}.intro h1{font:700 clamp(48px,5.5vw,80px)/1.08 KaiTi,'Kaiti SC',SimSun,serif;letter-spacing:-.055em;margin:18px 0;color:#123c39}.intro em{font:italic 500 1.05em/.96 Georgia,serif;letter-spacing:-.07em;margin-right:.09em}
+figure{margin:0;position:relative;isolation:isolate}figure img{width:100%;height:clamp(250px,24vw,345px);display:block;object-fit:cover;border-radius:8px 54px 10px 10px}figcaption{position:absolute;bottom:-12px;left:22px;padding:5px 14px;background:#f7f5e9ee;color:#304940;box-shadow:0 2px 7px #102e2a20;border-radius:4px;font:16px/1.6 KaiTi,serif;transform:rotate(-2deg)}figcaption i{font:italic 16px Georgia,serif}
+section{margin-top:28px;padding:28px 32px;border-radius:20px;background:#ffffffb8;border:1px solid #d1d9cf;box-shadow:none}.cover+section{margin-top:0}.section-head{gap:14px;margin-bottom:16px}.section-head span{background:none;border-radius:0;padding:0;color:#52736b;font:italic 23px/1 Georgia,serif}.section-head h2{font:700 34px/1.2 KaiTi,'Kaiti SC',SimSun,serif}#portal-options{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);grid-template-areas:'form note';gap:24px;align-items:stretch}#portal-paste{grid-area:form}#portal-options>p{grid-area:note;margin:0;background:#f2eee0;color:#554c34;border:0;padding:18px 22px;font:16px/1.65 SimSun,serif;border-radius:15px}#portal-options>p small{display:block;color:#715d2f;margin-bottom:10px;font:700 21px KaiTi,serif}#portal-options strong{color:#504322}label{font-weight:400}textarea{height:114px;resize:vertical;background:#f7f9f6;padding:12px 14px;border-color:#aebfb5}button:not(.secondary,.remove){background:#195651;border:0;border-radius:9px;padding:8px 22px}.table-wrap{background:white}tbody td{border-top:1px solid var(--line)}
+.result{background:#e7eee6}.result dl{display:grid;grid-template-columns:1.55fr 1fr;grid-template-rows:1fr 1fr;gap:10px}.result dl>div{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border:0;background:#ede6d1;--metric:#6a501b}.result dl>div:first-child{grid-row:span 2;align-items:flex-start;justify-content:center;flex-direction:column;background:#194847;--metric:#fffbee}.result dl>div:last-child{background:#e2e7f0;--metric:#354b66}.result dd{font:normal 36px Georgia,serif}.result dl>div:first-child dd{font-size:clamp(48px,6vw,88px)}.result dt{font-size:17px}.caption{margin:-4px 0 12px}
+@media(max-width:767px){main{width:calc(100% - 12px);max-height:calc(100dvh - 12px);padding:16px 15px 36px;border-radius:16px}nav{font-size:15px}nav small{font-size:10px}.cover{display:block;padding:22px 0 26px}.intro h1{font-size:clamp(34px,8.8vw,52px);line-height:1.3;margin:10px 0 4px}.intro h1 br,.intro p br{display:none}.intro p{font-size:16px}.intro small{font-size:11px}figure{margin-top:16px}figure img{height:154px;border-top-right-radius:36px}figcaption{left:auto;right:14px;font-size:14px}section{margin-top:18px;padding:20px 15px}.section-head h2{font-size:28px}#portal-options{display:flex;flex-direction:column-reverse;gap:16px}#portal-options>p{padding:15px}.result dl{grid-template-columns:1fr 1fr;grid-template-rows:auto}.result dl>div:first-child{grid-column:span 2;grid-row:auto}.result dl>div{padding:15px;flex-direction:column;align-items:start}.result dl>div:first-child dd{font-size:58px}.result dd{font-size:27px}.result dt{font-size:15px}}
+
+[hidden]{display:none!important}
+
+.result dl > div {
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.result dd {
+  font-family: KaiTi, "Kaiti SC", STKaiti, "GPA Kai Numerals", serif;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.15;
+}
+
+.result dl > div:first-child dd {
+  font-size: clamp(54px, 6.2vw, 84px);
+}
+
+@media (max-width: 767px) {
+  .result dl > div { padding-inline: 12px; }
+  .result dd { font-size: clamp(25px, 7vw, 34px); }
+  .result dl > div:first-child dd { font-size: clamp(48px, 15vw, 62px); }
+}
+
+/* Numeral subset of https://github.com/lxgw/LxgwWenKai
+Copyright 2021-2026 LXGW (https://github.com/lxgw/LxgwWenKai), with Reserved Font Name '霞鹜', '霞鶩', '落霞孤鹜', '落霞孤鶩' and 'LXGW'. [ADDITIONAL PERMISSION] The Reserved Font Names '霞鹜', '霞鶩', '落霞孤鹜', '落霞孤鶩' and 'LXGW' may continue to be used in Modified Versions recompiled from the Original Version, without modifications to the font source code; or in Modified Versions subsetted or converted to other formats (e.g., WOFF/WOFF2) solely for web font delivery, provided such Modified Versions are not made available as installable desktop fonts (e.g., on mainstream platforms like Google Fonts, or third-party non-commercial platforms recognized by the author @lxgw; other web font platforms please contact the author @lxgw for confirmation).
+Copyright 2020 The Klee Project Authors (https://github.com/fontworks-fonts/Klee)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://openfontlicense.org
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+*/
+
+@font-face {
+  font-family: "GPA Kai Numerals";
+  src: url("data:font/woff;base64,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") format("woff");
+  font-display: swap;
+  unicode-range: U+002E, U+0030-0039, U+2014;
+}
